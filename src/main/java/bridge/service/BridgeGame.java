@@ -34,4 +34,7 @@ public class BridgeGame {
     public void initBridge(int bridgeSize) {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
