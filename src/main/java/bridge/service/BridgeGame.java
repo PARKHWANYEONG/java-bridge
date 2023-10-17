@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.BridgeGameMap;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,5 +57,9 @@ public class BridgeGame {
 
     public boolean isFinishing() {
         return this.finish || bridge.size() < index;
+    }
+
+    void testBridge(List<String> list) {
+        this.bridge = list;
     }
 }

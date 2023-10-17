@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -30,5 +31,16 @@ class BridgeGameTest {
         assertTrue(bridge.stream().allMatch(s-> s.equals("U") | s.equals("D")));
     }
 
+    @Test
+    void 이동할_칸_입력받기() {
+        bridgeGame.testBridge(Arrays.asList("U","D","D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        BridgeGameMap move = bridgeGame.move("U");
+        System.out.println(move);
+        assertThat(move.toString()).isEqualTo("[ O |   | X ]\n"+
+                "[   | O |   ]\n");
+
+    }
 
 }
