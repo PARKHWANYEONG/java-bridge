@@ -53,6 +53,16 @@ class BridgeGameTest {
         assertTrue(bridgeGame.isSuccess());
     }
 
-    
+    @Test
+    void 다리_건너기_실패_테스트() {
+        bridgeGame.testBridge(Arrays.asList("U","D","D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        BridgeGameMap bridgeGameMap = bridgeGame.move("U");
+        assertTrue(bridgeGame.isFail());
+        assertTrue(!bridgeGame.isSuccess());
+    }
+
+
 
 }
