@@ -24,4 +24,8 @@ public class BridgeGameMap {
         return String.format(FORMAT,String.join(DELIMITER,upperBridge))
                 + String.format(FORMAT,String.join(DELIMITER,lowerBridge));
     }
+    public void reset() {
+        upperBridge.clear();
+        lowerBridge.clear();
+    }
 }

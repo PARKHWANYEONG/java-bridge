@@ -18,7 +18,7 @@ public class InputView {
              size = Integer.parseInt(Console.readLine());
             Validator.bridgeSize(size);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR] 3부터 20 사이의 정수를 입력해 주세요.");
             return readBridgeSize();
         }
         return size;
@@ -44,6 +44,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = "";
+        try {
+             input = Console.readLine();
+            Validator.retryInput(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readGameCommand();
+        }
+        return input;
     }
 }

@@ -16,16 +16,28 @@ public class Controller {
     public void run() {
         bridgeGameInit();
         bridgeGameStart();
+        bridgeGameResult();
     }
+
+    private void bridgeGameResult() {
+        outputView.printResult(bridgeGame);
+    }
+
 
     private void bridgeGameStart() {
-        while (!bridgeGame.isFinishing()) {
+        bridgeGame.attempt();
+        while (!bridgeGame.isSuccess() && !bridgeGame.isFail()) {
             String moving = inputView.readMoving();
             BridgeGameMap result = bridgeGame.move(moving);
-            outputView.printMap(result);
+             outputView.printMap(result);
         }
-
+        if (bridgeGame.isFail()) {
+            if(bridgeGame.retry(inputView.readGameCommand())){
+                bridgeGameStart();
+            }
+        }
     }
+
     private void bridgeGameInit() {
         outputView.gameStart();
         int bridgeSize = inputView.readBridgeSize();
