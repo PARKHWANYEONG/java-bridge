@@ -62,6 +62,24 @@ class BridgeGameTest {
         assertTrue(bridgeGame.isFail());
         assertTrue(!bridgeGame.isSuccess());
     }
+    @Test
+    void 게임_재시도_테스트() {
+        bridgeGame.testBridge(Arrays.asList("U","D","D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        BridgeGameMap bridgeGameMap = bridgeGame.move("U");
+        assertTrue(bridgeGame.isFail());
+        assertTrue(!bridgeGame.isSuccess());
+        assertThat(bridgeGameMap.getUpperBridge().size()).isEqualTo(3);
+        assertThat(bridgeGameMap.getLowerBridge().size()).isEqualTo(3);
+
+        bridgeGame.retry("R");
+        assertTrue(!bridgeGame.isSuccess());
+        assertTrue(!bridgeGame.isFail());
+        assertThat(bridgeGameMap.getUpperBridge().size()).isEqualTo(0);
+        assertThat(bridgeGameMap.getLowerBridge().size()).isEqualTo(0);
+    }
+
 
 
 
