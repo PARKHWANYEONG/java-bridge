@@ -3,7 +3,6 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGameMap;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -40,7 +40,19 @@ class BridgeGameTest {
         System.out.println(move);
         assertThat(move.toString()).isEqualTo("[ O |   | X ]\n"+
                 "[   | O |   ]\n");
-
     }
+    @Test
+    void 다리_건너기_성공_테스트() {
+        bridgeGame.testBridge(Arrays.asList("U","D","D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        BridgeGameMap bridgeGameMap = bridgeGame.move("D");
+        assertThat(bridgeGameMap.getUpperBridge().size()).isEqualTo(3);
+        assertThat(bridgeGameMap.getLowerBridge().size()).isEqualTo(3);
+        assertTrue(!bridgeGame.isFail());
+        assertTrue(bridgeGame.isSuccess());
+    }
+
+    
 
 }

@@ -28,4 +28,12 @@ public class BridgeGameMap {
         upperBridge.clear();
         lowerBridge.clear();
     }
+
+    public List<String> getUpperBridge() {
+        return upperBridge;
+    }
+
+    public List<String> getLowerBridge() {
+        return lowerBridge;
+    }
 }

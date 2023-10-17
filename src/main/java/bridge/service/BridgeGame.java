@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.BridgeGameMap;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ public class BridgeGame {
 
     private int attempt = 0;
     private int index = 0;
-    private List<String> bridge;
+    private List<String> bridge = new ArrayList<>();
     private boolean fail = false;
     private boolean success = false;
 
@@ -86,9 +86,6 @@ public class BridgeGame {
         return success;
     }
 
-    public void counting() {
-
-    }
     public void attempt() {
         attempt++;
     }

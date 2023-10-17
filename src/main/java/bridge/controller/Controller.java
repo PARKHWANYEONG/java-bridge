@@ -18,11 +18,9 @@ public class Controller {
         bridgeGameStart();
         bridgeGameResult();
     }
-
     private void bridgeGameResult() {
         outputView.printResult(bridgeGame);
     }
-
 
     private void bridgeGameStart() {
         bridgeGame.attempt();
