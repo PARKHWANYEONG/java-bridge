@@ -18,7 +18,7 @@ public class InputView {
              size = Integer.parseInt(Console.readLine());
             Validator.bridgeSize(size);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 3부터 20 사이의 정수를 입력해 주세요.");
+            System.out.println(e.getMessage());
             return readBridgeSize();
         }
         return size;
@@ -28,7 +28,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String moving = "";
+        try {
+            moving = Console.readLine();
+            Validator.moving(moving);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+        return moving;
     }
 
     /**

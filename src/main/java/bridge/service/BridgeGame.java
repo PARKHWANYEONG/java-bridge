@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.domain.Bridge;
+import bridge.domain.BridgeGameMap;
 
 import java.util.List;
 
@@ -11,9 +11,16 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
+    private final BridgeGameMap bridgeGameMap;
+
+    private int count = 0;
+    private int index = 0;
     private List<String> bridge;
-    public BridgeGame(BridgeMaker bridgeMaker) {
+    private boolean finish = false;
+
+    public BridgeGame(BridgeMaker bridgeMaker , BridgeGameMap bridgeGameMap) {
         this.bridgeMaker = bridgeMaker;
+        this.bridgeGameMap = bridgeGameMap;
     }
 
     /**
@@ -21,7 +28,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public BridgeGameMap move(String moving) {
+        String result = "O";
+        if (!bridge.get(index).equals(moving)) {
+            result = "X";
+            finish = true;
+        }
+        index++;
+        if (moving.equals("U")) bridgeGameMap.upper(result);
+        if (moving.equals("D")) bridgeGameMap.lower(result);
+        return bridgeGameMap;
     }
 
     /**
@@ -36,5 +52,9 @@ public class BridgeGame {
     }
     public List<String> getBridge() {
         return bridge;
+    }
+
+    public boolean isFinishing() {
+        return this.finish || bridge.size() < index;
     }
 }

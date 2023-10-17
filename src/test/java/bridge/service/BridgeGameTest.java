@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGameMap;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,10 +19,11 @@ class BridgeGameTest {
     void beforeEach() {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        bridgeGame = new BridgeGame(bridgeMaker);
+        BridgeGameMap bridgeGameMap = new BridgeGameMap();
+        bridgeGame = new BridgeGame(bridgeMaker,bridgeGameMap);
     }
     @Test
-    void 다리_생성() {
+    void 다리_생성_테스트() {
         bridgeGame.initBridge(3);
         List<String> bridge = bridgeGame.getBridge();
         assertThat(bridge.size()).isEqualTo(3);
